@@ -1,0 +1,39 @@
+/* Sidebar menu */
+
+    #site_content_left div.left_nav_sections ul.level1 > li:not(.level_change):not(.current_level_first),
+    #site_content_left div.left_nav_sections ul.level2 li{
+        padding:10px 2px !important;
+        cursor:pointer;
+    }
+    
+    #site_content_left div.left_nav_sections ul > li.current_level
+    {
+        font-weight: bold;
+        padding-left:20px;
+    }
+
+    #site_content_left div.left_nav_sections ul.level1 > li:not(.level_change):not(.current_level):not(.current_level_first){
+        color:#FFF;
+    }
+    #site_content_left div.left_nav_sections ul.level1 > li:not(.level_change):not(.current_level_first):not(.current_level):hover,
+    #site_content_left div.left_nav_sections ul.level2 li:not(.level_change):hover
+    {
+        background:rgba(255,255,255,.5);
+        transition:none;
+    }
+
+    div#site_content_left div.box_dark ul.level2 li.current_level:hover{
+        background:rgba(255,255,255,.5) !important;
+    }
+
+    #site_content_left div.left_nav_sections ul.level1 li.level_change ul.level2 li{
+        color:#2c6a9e;
+    }
+
+    #site_content_left img.whp_sidebar_button{
+        max-height:100%;
+        max-width:15%;
+        margin-right:5px;
+        vertical-align: middle;
+    }
+

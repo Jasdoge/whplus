@@ -1,0 +1,49 @@
+body{
+    background:#f0f5f8;
+    font-size:3vmax;
+}
+
+div.options{
+
+    position: absolute;
+    left:50%; top:50%;
+    min-width:50%;
+    transform:translate(-50%, -50%);
+    background:#FFF;
+    border:#2c6a9e 0.2vmax solid;
+    border-radius:2vmax;
+    padding:2vmax;
+    text-align: center;
+
+}
+
+input{
+
+    padding:1vmax;
+    border-radius:1vmax;
+    color:#FFF;
+    font-weight: bold;
+    background:#2c6a9e;
+    border:#f0f5f8 0.2vmax solid;
+    font-size: 2vmax;
+
+}
+
+input[type=checkbox]{
+    width:2vmax; height:2vmax;
+}
+
+label{
+    font-size:2vmax;
+    padding:1vmax;
+    border-radius:1vmax;
+    background:#f0f5f8;
+    box-shadow:0.2vmax 0.2vmax 0.5vmax rgba(0,0,0,.5);
+}
+
+div.footer{
+    position: absolute;
+    bottom:1vmax; right:1vmax;
+    font-style: italic;
+    font-size:1.5vmax;
+}

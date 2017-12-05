@@ -335,9 +335,6 @@ var WHPBG = {};
                 // The order status has changed
                 (existing && existing.status !== order.status)
             ){
-                // WH Borked
-                if(order.status === '[]')
-                    return;
 
                 // notify
                 var date = moment.tz(order.date, 'europe/stockholm').valueOf();

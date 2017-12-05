@@ -1,0 +1,428 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{
+	padding:0;
+	margin:0;
+	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color:#FFF;
+	font-size:3vw;
+	user-select:none;
+	outline:none !important;
+}
+
+p, h1, h2, h3, h4{
+	cursor:default;
+}
+
+h2{
+	margin:0;
+	padding:0;
+	font-size:6vw;
+}
+
+h3{
+	margin:0;
+	padding:0;
+	font-size:4vw;
+}
+
+div{
+	position:relative;
+	cursor:default;
+}
+
+div.centerer{
+	position:absolute;
+	top:0; bottom:0; left:0; right:0;
+	width:100%; height:100%;
+	pointer-events: none;
+}
+
+div.button, input[type=button], input[type=submit]{
+	border-radius:1vw;
+	padding:1vw;
+	background: linear-gradient(to bottom, #eeeeee 0%,#cccccc 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	box-shadow:0.5vw 0.5vw 1vw rgba(0,0,0,.5);
+	user-select:none;
+	text-shadow:0.15vw 0.15vw 0.1vw #000;
+	display:inline-block;
+	transition:all 0.5s ease-out;
+	outline:none;
+	width:auto;
+	position:relative;
+}
+@keyframes bgbutton{
+	from{background: #b0ebad; transform:scale(1.0); }
+	to{background: #d8f5d7; transform:scale(1.05);}
+}
+div.button.highlight{
+	animation:bgbutton 0.5s infinite alternate ease-in-out;
+}
+input.hidden{
+	display:none;
+}
+
+input[type=button], input[type=submit]{
+	font-size:2vw;
+	color:#FFF;
+	font-weight:bold;
+}
+div.button:active{
+	box-shadow:0.1vw 0.1vw 0.25vw rgba(0,0,0,1);
+	transition:none;
+	background:#FFF;
+}
+
+#wrap{
+	position:fixed; 
+	overflow:hidden;
+	left:0; right:0; bottom:0; top:0;
+	width:100%; height:100%;
+	background: linear-gradient(to bottom, #002559 0%,#2989d8 82%,#2989d8 82%,#dbeeff 83%,#c3d6e5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	text-align:center;
+}
+
+#languages{
+	position:absolute;
+	bottom:0; right:2vmax;
+}
+#languages img{
+	height:4vmax;
+	width:4vmax;
+	margin:0.1vmax;
+	filter: grayscale(1);
+	cursor:pointer;
+}
+#languages img.selected{
+	filter:grayscale(0);
+}
+#languages img:active{
+	transform:scale(1.05);
+}
+
+#menuButton{
+	border-bottom-right-radius:0;
+	border-bottom-left-radius:0;
+	border-top-left-radius:0;
+	width:10vmax;
+	font-size:4vmax;
+	cursor:pointer;
+	text-align:center;
+	display:inline-block;
+}
+#minichart{
+	border:1px solid #FFF;
+	border-radius:0.25vmax;
+	background:rgba(0,0,0,.75);
+	position:absolute;
+	left:13vmax; 
+	bottom:0.5vmax;
+	width:7vmax;
+	height:60%;
+	overflow:hidden;
+}
+#minichart:active{ 
+	cursor:pointer;
+	transform:scale(1.05);
+}
+
+#usercount{
+	display:inline-block;
+	vertical-align:bottom;
+	padding-bottom:0.8vmax;
+	padding-left:8vmax;
+}
+#usercount img{
+	vertical-align:middle;
+	width:3vmax; height:3vmax;
+	padding-bottom:0.3vw;
+	margin-right:0.5vw;
+}
+
+#menuBottom{
+	position:absolute;
+	display:block;
+	bottom:0;
+	left:0;
+	right:0;
+	transform:translateY(0%);
+	transition:all 0.5s ease-out;
+	pointer-events: none;
+	text-align:left;
+}
+#menuBottom div.runner{
+	height:80%; position:absolute; left:0; right:0;
+	background:rgba(0,0,0,.25);
+	bottom:0;
+}
+#menuBottom div.runner *{
+	vertical-align:middle;
+	margin-bottom:-0.5vmax;
+}
+#menuBottom *{
+	pointer-events: auto;
+}
+
+#menuBottom.hidden{
+	transform:translateY(100%);
+}
+
+
+div.wrapGeneric{
+	background:rgba(255,255,255,.75); 
+	padding:1vw;
+	border-radius:1vw;
+	box-shadow:0.5vw 0.5vw 1vw rgba(0,0,0,.5);
+	top:50%;
+	transform:translateY(-50%) scale(1);
+	display:inline-block;
+	pointer-events:auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@keyframes loading{
+	from{transform:translateY(-50%) scale(1);}
+	to{transform:translateY(-50%) scale(1.1);}
+}
+#loading{
+	transition:all 0.5s ease-out;
+	animation:loading alternate 1s ease-in-out infinite;
+	background: linear-gradient(to bottom, #6ed53b 0%,#79d54f 50%,#4dc317 51%,#45bc0a 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	max-width:50%;
+	padding:2vw;
+}
+#loading.clickable, #loading.clickable *{
+	cursor:pointer;
+}
+#loading.clickable.noanim{
+	animation:none;
+}
+
+#loading.hidden{
+	animation:none;
+	top:100%;
+	transform:translateY(100%);
+	
+}
+
+
+
+
+#stats #fullHistogram, #stats div.statrow{
+	
+	width:auto;
+	height:20vh;
+	background:rgba(0,0,0,.75);
+	border:0.2vw solid #FFF;
+	border-radius:1vw;
+	box-shadow:0.1vw 0.1vw 1vw rgba(0,0,0,.5);
+	margin:1vw;
+	overflow:hidden;
+	
+}
+#stats div.statrow{
+	text-align:center;
+	padding:0.5vw;
+	height:auto;
+}
+
+
+
+
+
+#menu, #stats{
+	transition:all 0.25s ease-out;
+	left:3vw; right:3vw;
+	position:absolute;
+	text-align:center;
+	top:3%; bottom:10%;
+	overflow:hidden;
+	transform:none;
+	display:flex;
+	flex-direction:column;
+}
+#stats{
+	display:block;
+	height:auto;
+	top:50%;
+	transform:translateY(-50%);
+	bottom:auto;
+}
+
+#menu.hidden, #stats.hidden{
+	transform:scale(0.5) translateY(0%);
+	top:100%;
+}
+
+
+#menu div.main{
+	display:flex;
+	overflow:hidden;
+	flex:auto;
+	flex-direction:row;
+}
+
+#menu div.footer{
+	margin-top:1vw;
+}
+
+#menu div.quest, #menu div.unlocks{
+	width:50%;
+	overflow:auto;
+}
+#menu div.quest{
+	border-right:0.2vw solid #FFF;
+	padding-right:1vw;
+	margin-right:1vw;
+}
+#menu div.unlocks{
+	padding-bottom:3vw;
+}
+
+#menu div.content{
+	text-align:left;
+	font-size:2vw;
+}
+#menu div.content p.title{
+	text-align:center;
+	margin:0; padding:0;
+}
+
+#menu div.content div.reward{
+	background: linear-gradient(to bottom, #d5503b 0%,#d5634f 50%,#c33117 51%,#bc220a 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	border-radius:1vw;
+	padding:1vw;
+	margin-bottom:0.25vw;
+	border:0.25vw solid rgba(0,0,0,0);
+	box-shadow:0.25vw 0.25vw 0.5vw rgba(0,0,0,.5); 
+}
+#menu div.content div.reward img{
+	max-width:3vw; max-height:3vw; 
+	vertical-align:middle; margin-right:0.5vw;
+}
+#menu div.content div.reward.unlocked{
+	background: linear-gradient(to bottom, #6ed53b 0%,#79d54f 50%,#4dc317 51%,#45bc0a 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	cursor:pointer;
+}
+#menu div.content div.reward.selected{
+	border:0.25vw solid rgba(255,255,255,1);
+}
+#menu div.content div.reward.unlocked:active{
+	box-shadow:0.25vw 0.25vw 0.5vw rgba(0,0,0,.75);
+}
+#menu div.content div.reward.hidden{
+	display:none;
+}
+#menu div.unlocks div.content div.divider{
+	height:1vw;
+}
+
+
+ 
+
+
+
+
+#keyboardContainer{
+	transition:all 0.25s ease-out;
+	opacity:1;
+	transform:translateY(0%);
+	top:3vh;
+	font-size:2vw;
+}
+#keyboardContainer.hidden{
+	transform:scale(0.5) translateY(0%);
+	top:100%;
+}
+#keyboardContainer div.sharps{
+	position:absolute;
+	top:0; left:0; right:0;
+}
+
+#keyboardContainer div.key{
+	display:inline-block;
+	width:12vw;
+	height:20vw;
+	background:#FFF; 
+	border-radius:0.5vw;
+	box-shadow:0.25vw 0.25vw 0.5vw rgba(0,0,0,.5); 
+	margin:0.2vw;
+	outline:none;
+	transition:background 1s ease-out;
+	color:#000;
+} 
+#keyboardContainer div.key span{
+	opacity:0.25;
+}
+#keyboardContainer div.key:hover{
+	cursor:pointer;
+	box-shadow:0.25vw 0.25vw 0.5vw rgba(0,0,0,.75);
+}
+#keyboardContainer div.key:active, #keyboardContainer div.key:focus, #keyboardContainer div.key.active{
+	background:#AEF !important;
+	box-shadow:0.1vw 0.1vw 0.25vw rgba(0,0,0,1) !important;
+	transition:none;
+}
+
+#keyboardContainer div.keyset div.key.practice{
+	background:#AFA;
+	box-shadow:0.1vw 0.1vw 0.25vw rgba(0,255,0,1);
+	transition:none;
+	font-weight:bold;
+}
+@keyframes scale{
+	from{transform:scale(1.0);}
+	to{transform:scale(1.05);}
+}
+#keyboardContainer div.keyset div.key.practice.start{
+	background:#FFA;
+	animation:scale 1s alternate infinite ease-in-out;
+}
+
+#keyboardContainer div.key.sharp{
+	display:block;
+	position:absolute;
+	top:0;
+	left:0;
+	width:6vw;
+	height:13vw; 
+	background:#000;
+	border-top-left-radius:0;
+	border-top-right-radius:0; 
+	transform:translateX(-50%);
+	color:#FFF;
+}
+#keyboardContainer div.key.sharp:active, #keyboardContainer div.key.sharp.active{
+	background:#666;
+	transition:none;
+}
+#keyboardContainer div.sharps div:nth-child(1){
+	left:14.2857142857%;
+}
+#keyboardContainer div.sharps div:nth-child(2){
+	left:28.5714285714%;
+}
+#keyboardContainer div.sharps div:nth-child(3){
+	left:57.1428571429%;
+}
+#keyboardContainer div.sharps div:nth-child(4){
+	left:71.4285714286%; 
+}
+#keyboardContainer div.sharps div:nth-child(5){
+	left:85.7142857143%;
+}
+
+
+
+

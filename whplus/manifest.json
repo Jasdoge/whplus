@@ -1,13 +1,13 @@
 {
     "manifest_version" : 2,
 
-    "name" : "Webhallen+",
+    "name" : "WH+",
     "short_name" : "WH+",
     "description" : "Lägger till ikoner, större knappar, samt notifikationer för webhallen.com",
     "author" : "Jasdoge",
 
 
-    "version" : "1.0.0",
+    "version" : "1.0.2",
     "icons":{
         "28" : "icon.png",
         "144" : "logo-144.png"

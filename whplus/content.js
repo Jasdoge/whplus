@@ -88,6 +88,8 @@ var WHP = {};
             {name:"Hem &amp; Hälsa", icon:"plus.svg"},
             {name:"Lek &amp; Gadgets", icon:"lek.svg"},
             {name:"Film", icon:"video.svg"},
+            {name:"Nätverk &amp; Smarta Hem", icon:"network.svg"},
+            
             
         ];
 

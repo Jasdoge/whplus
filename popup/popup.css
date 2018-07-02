@@ -1,0 +1,99 @@
+body{
+    width:400px;
+    background: #3097d1; 
+    padding:0px; margin:0;
+    color:#FFF;
+    height:auto;
+    font-size:16px;
+}
+*{
+    position:relative;
+    user-select:none;
+}
+body > div.empty{
+    color:#FFF;
+    text-align: center;
+}
+
+div.listing{
+    padding: 5px 5px 5px 35px;
+    background:rgba(255,255,255,0.5);
+    margin-bottom:2px;
+    text-align:right;
+    border-bottom:2px solid #FFF;
+    border-radius:5px;
+    margin:3px;
+    color:#000;
+}
+
+
+div.listing.new{
+    background:rgba(255,255,255,0.5);
+}
+
+@keyframes supplyDrop{
+    from{color:#FFF;}
+    to{color:#DDEEFF;}
+}
+@keyframes supplyDropImg{
+    from{transform:scale(1);}
+    to{transform:scale(1.05);}
+}
+
+div.listing.supplydrop{
+    font-size:20px;
+    font-weight: bold;
+    animation: supplyDrop 1s ease-in-out alternate infinite;
+    border-color:#70C7F1;
+}
+div.listing.clickable{
+    cursor:pointer;
+    transition: all 0.1s ease-out;
+}
+div.listing.clickable:hover{
+    transition:none;
+    box-shadow:0 0 0px 2px rgba(255,255,255,.5) inset;
+}
+div.listing.clickable:active{
+    transition:none;
+    transform:scale(0.97);
+}
+
+div.listing.supplydrop img{
+    animation: supplyDropImg 1s ease-in-out alternate infinite;
+}
+
+div.listing.feed img{
+    width:auto;
+    height:25px;
+}
+div.listing img{
+    height:32px; 
+    width:32px;
+    position:absolute;
+    display:block;
+    left:5px;
+}
+div.listing div.quant{
+    padding:2px 5px;
+    font-size:12px;
+    position:absolute;
+    background:rgba(0,0,0,.5);
+    border-radius:3px;
+    color:#FFF;
+    top:20px;
+    left:25px;
+}
+
+span.remove{
+    display:inline-block;
+    margin-left:5px;
+    background: rgba(0,0,0,.25);
+    border-radius: 100px;
+    width:20px; height:20px;
+    text-align:center;
+    vertical-align:middle;
+    color:#FFF;
+    line-height:16px;
+}
+

@@ -1,3 +1,2 @@
-**Please note that icons used are licensed only for personal use.**
-
-This is a work in progress for Jasdoge's christmas decorations system. It'll be updated soon enough with a guide how to set it up. The current release is just for developing on multiple devices.
+Detta är en chrome extension som gör det enklare att hålla koll på medlemssystemet på Webhallen.com 
+För mer information, kolla in den på chrome web store: https://chrome.google.com/webstore/detail/wh%20/ajjcgnilmephijgaogahkplailcdpndm?authuser=3

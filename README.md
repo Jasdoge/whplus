@@ -16,5 +16,5 @@ Kan även installeras via chrome web store (ligger dock efter på uppdateringar 
 3. WH+ ikonen kommer bli blå när du har nya meddelanden.
 4. Du kan klicka på krysset för att ta bort en notifikation.
 
-Tillägget hanterar inga personuppgifter eller login-information. När du loggat in "besöker" tillägget webhallen.com och hämtar informationen åt dig med din redan existerande session.
+**Tillägget hanterar inga personuppgifter eller login-information.** När du loggat in "besöker" tillägget webhallen.com och hämtar informationen åt dig med din redan existerande session.
 

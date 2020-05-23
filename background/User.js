@@ -29,7 +29,7 @@ export default class User{
 	 }
 
 	 getMemberURL(){
-		 return this.id+'-'+encodeURIComponent(this.username);
+		 return this.id;
 	 }
 
 	 // Loads from the /me endpoint

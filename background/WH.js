@@ -171,7 +171,7 @@ export default class WH{
 		// type is feed or supplydrop
 		ctItemClicked(type, id){
 			if(type === 'supplydrop')
-				this.ctGotoAndScroll('se/member/'+this.user.id+'-'+encodeURIComponent(this.user.username)+'/supply-drop', "div.member-subpage");
+				this.ctGotoAndScroll('se/member/'+this.user.id+'/supply-drop', "div.member-subpage");
 			else if(type === 'feed'){
 				for(let f of this.user.feed){
 					if(f.id !== +id)

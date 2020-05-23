@@ -1,2 +1,7 @@
-Detta är en chrome extension som gör det enklare att hålla koll på medlemssystemet på Webhallen.com 
-För mer information, kolla in den på chrome web store: https://chrome.google.com/webstore/detail/wh%20/ajjcgnilmephijgaogahkplailcdpndm?authuser=3
+Detta är en chrome extension som gör det enklare att hålla koll på medlemssystemet på Webhallen.com genom att lägga till push notifikationer när:
+
+* Du har en ny supply drop
+* Du får ett nytt meddelande
+* Leverans-status uppdateras
+
+Kan även installeras via chrome web store (ligger dock efter på uppdateringar pga av googles sega verifieringssystem): https://chrome.google.com/webstore/detail/wh%20/ajjcgnilmephijgaogahkplailcdpndm?authuser=3

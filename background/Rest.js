@@ -16,7 +16,6 @@ export default class Rest{
 		this.error = undefined;
 		this.data = {};
 		this.method = method || 'GET';
-		return this.send();
 
 	}
 

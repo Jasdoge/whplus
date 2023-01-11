@@ -68,12 +68,14 @@ export default class Popup{
 
 
             for(let f of this.user.feed){
+                
                 ++totalNotices;
-                html+= '<div class="listing clickable feed" data-id='+f.id+' style="border-color:'+f.borderColor+';background-color:'+f.backgroundColor+';">';
-                    html+= '<img src="https://cdn.webhallen.com/img/icons/feed/'+f.iconUrl+'" />';
-                    html+= f.title;
-                    html+= '<span class="remove" data-id="'+f.id+'">'+'×'+'</span>';
+                html+= '<div class="listing clickable feed '+(f.dismissed ? 'dismissed': '')+'" data-id='+f.id+' style="border-color:'+f.borderColor+';background-color:'+f.backgroundColor+';">';
+                    html += '<img src="https://cdn.webhallen.com/img/icons/feed/'+f.iconUrl+'" />';
+                    html += f.title;
+                    html += '<br /><i class="sub">'+Popup.fuzzy_time(Date.now()-f.occuredAt*1000)+' sedan</i>';
                 html+= '</div>';
+
             }
             if(!totalNotices)
                 html = '<div class="empty">Inga nya händelser!</div>';   
@@ -89,7 +91,7 @@ export default class Popup{
                 type = 'supplydrop';
             th.comSend('ItemClicked', [type, id]);
         });
-
+        /*
         $("div.listing.clickable.feed span.remove").on('click', function(event){
             event.stopImmediatePropagation();
 
@@ -101,7 +103,7 @@ export default class Popup{
 
             return false;
         });
-
+        */
 
     }
 

@@ -33,55 +33,63 @@ export default class User{
 	 }
 
 	 // Loads from the /me endpoint
-	 loadFromRest(data){
+	 async loadFromRest(){
 
 		// Load from WH API
-		return new Rest('me').then(call => {
-				let data = call.data;
-				if(!data || !data.user || !data.user.id)
-					return Promise.reject(301);
-				this.id = data.user.id;
-				this.username = data.user.username;
-				this.feed = data.user.feed.map(el => { return new FeedElement(el, this); });
+		const rest = new Rest('me');
+		const call = await rest.send();
+		
+		let data = call.data;
+		if(!data || !data.user || !data.user.id)
+			throw new Error(301);
 
-				// Continue by loading from storage
-				return this.loadFromStorage();
-			})
-			// Compare cached information with the new information
-			.then(storageData => {
-				this.ignore_css = !!this.ignore_css;
-				this.last_feed = storageData.feed || 0;
-				this.crates = storageData.crates || 0;
-				// Handle new feed entries
-				for(let f of this.feed){
-					if(f.occuredAt > this.last_feed)
-						f.push();
-				}
+		this.id = data.user.id;
+		this.username = data.user.username;
 
-				// Get crates
-				return new Rest("supply-drop");
-			})
-			.then(call => {
-				let data = call.data;
-				if(!data || !data.crateTypes)
-					return Promise.reject("Unable to fetch supply drop data");
+		rest.endpoint = 'user/feed?all';
+		const feed = await rest.send();
+		
+		this.feed = feed.data.entries.map(el => new FeedElement(el, this))
+		this.feed.sort((a,b) => a.id > b.id ? -1 : 1);
+		this.feed = this.feed.slice(0, 10);
+		// Continue by loading from storage
+		const storageData = await this.loadFromStorage();
+			
+		this.ignore_css = !!this.ignore_css;
+		this.last_feed = storageData.feed || 0;
+		this.crates = storageData.crates || 0;
+		// Handle new feed entries
+		for(let f of this.feed){
 
-				this.crateTypes = data.crateTypes.map(e => { return new CrateElement(e, this); });
+			if( f.occuredAt > this.last_feed )
+				f.push();
 
-				// Crates have increased, send a note
-				if( this.crates < this.getNrSupplyDrops() ){
-					let note = new Note();
-					note.title = "Supply Drop";
-					note.message = 'Du har '+this.getNrSupplyDrops()+' oöppnad'+(this.getNrSupplyDrops() === 1 ? '' : 'e')+' supply drop'+(this.getNrSupplyDrops() === 1 ? '' : 's')+'!';
-					note.onClick = id => {
-						Note.close(id);
-						this.parent.ctGotoAndScroll('se/member/'+this.getMemberURL()+'/supply-drop', 'div.member-subpage');
-					};
-					note.send();
-				}
+		}
+
+		rest.endpoint = "supply-drop";
+		let supplyData = await rest.send();
+		supplyData = supplyData.data;
+		if(!supplyData || !supplyData.crateTypes)
+			throw new Error("Unable to fetch supply drop data");
+
+		this.crateTypes = supplyData.crateTypes.map(e => { return new CrateElement(e, this); });
+
+		// Crates have increased, send a note
+		if( this.crates < this.getNrSupplyDrops() ){
+
+			let note = new Note();
+			note.title = "Supply Drop";
+			note.message = 'Du har '+this.getNrSupplyDrops()+' oöppnad'+(this.getNrSupplyDrops() === 1 ? '' : 'e')+' supply drop'+(this.getNrSupplyDrops() === 1 ? '' : 's')+'!';
+			note.onClick = id => {
+				Note.close(id);
+				this.parent.ctGotoAndScroll('se/member/'+this.getMemberURL()+'/supply-drop', 'div.member-subpage');
+			};
+			note.send();
+
+		}
 				
-				return this.saveToStorage();
-			});
+		return await this.saveToStorage();
+			
 	 }
 
 	 loadFromStorage(){
@@ -140,12 +148,16 @@ export default class User{
 	 }
 
 	 getNrNotices(){
-		 return this.getNrSupplyDrops()+this.feed.length;
+		 return this.getNrSupplyDrops()+this.feed.filter(el => !el.dismissed).length;
 	 }
+
+	 
+
 }
 
 class FeedElement{
 	constructor(data, parent){
+
 		this.parent = parent;
 		this.avatarName = '';
 		this.backgroundColor = '#e8b0c9';
@@ -154,6 +166,8 @@ class FeedElement{
 		this.id = 0;
 		this.name = '';
 		this.occuredAt = 0;
+		this.dismissed = false;
+
 		this.path = {};
 		this.title = '';
 		this.load(data);
@@ -169,6 +183,7 @@ class FeedElement{
 			occuredAt : this.occuredAt,
 			path : this.path,
 			title : this.title,
+			dismissed : this.dismissed,
 		};
 	}
 
@@ -183,6 +198,7 @@ class FeedElement{
 
 	// Creates a notification
 	push(){
+
 		let note = new Note();
 		let ext = this.iconUrl.split('.').pop();
 		note.title = this.title;

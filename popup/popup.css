@@ -85,6 +85,10 @@ div.listing div.quant{
     left:25px;
 }
 
+div.dismissed{
+    opacity: 0.75;
+}
+
 span.remove{
     display:inline-block;
     margin-left:5px;

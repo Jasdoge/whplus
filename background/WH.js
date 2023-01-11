@@ -42,17 +42,17 @@ export default class WH{
 
 
 	// Refresh from api
-	fetchFromRest(){
-		return this.user.loadFromRest()
-			.catch(err => {
-				// User logged out
-				if(err === 301)
-					this.user = new User(this);
-				else
-					console.error(err);
-			}).then(() => {
-				this.onRestUpdate();
-			});
+	async fetchFromRest(){
+		try{
+			await this.user.loadFromRest()
+			this.onRestUpdate();
+		}catch(err){
+			// User logged out
+			if(err.message === '301')
+				this.user = new User(this);
+			else
+				console.error(err);
+		}
 	}
 
 
@@ -85,7 +85,7 @@ export default class WH{
 
 	// COM
 
-		onCom(message,sender,sendResponse){
+		async onCom(message,sender,sendResponse){
 
 			let task = message.task, 
 				args = message.args
@@ -99,10 +99,8 @@ export default class WH{
 			if(typeof this['ct'+task] !== "function")
 				return console.error("No such task from front script:", task);
 
-			let ret = this['ct'+task].apply(this, args);
-			Promise.resolve(ret).then(re => {
-				sendResponse(re);
-			});
+			let ret = await this['ct'+task].apply(this, args);
+			sendResponse(ret);
 			return true;
 		}
 
@@ -147,10 +145,10 @@ export default class WH{
 			return true;
 		}
 
-		ctRemoveFeed(id){
-			return new Rest('user/feed/'+id, 'DELETE').then(() => {
-				return this.fetchFromRest();
-			});
+		async ctRemoveFeed(id){
+			const rest = new Rest('user/feed/'+id, 'DELETE');
+			await rest.send();
+			return this.fetchFromRest();
 		}
 
 		ctDebug(){
